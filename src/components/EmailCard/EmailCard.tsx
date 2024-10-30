@@ -3,18 +3,21 @@ interface EmailCardProps {
     card: EmailCardItemProps;
     onClick: () => void;
     // isSelected: boolean;
-    // isFavorite: boolean;
+    isFavorite: boolean;
+    isRead: boolean;
 }
 export const EmailCard = ({
     card,
     onClick,
+    isFavorite,
+    isRead,
 }: // isSelected,
 // isFavorite,
 EmailCardProps) => {
     return (
         <div
             className={`${
-                card.isRead ? "bg-blue-400" : "bg-yellow-400"
+                isRead ? "bg-blue-400" : "bg-yellow-400"
             }  my-4 relative`}
             onClick={onClick}
         >
@@ -22,7 +25,7 @@ EmailCardProps) => {
                 {JSON.stringify(card, null, 2)}
             </pre>
             <div className="absolute bottom-4 right-4 text-black">
-                {card.isFavorite ? "Favorite" : ""}
+                {isFavorite ? "Favorite" : ""}
             </div>
         </div>
     );
