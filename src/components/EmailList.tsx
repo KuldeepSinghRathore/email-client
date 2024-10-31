@@ -23,7 +23,7 @@ export const EmailList = ({
     selectedId,
 }: EmailCardProps) => {
     return (
-        <div className={`flex  ${selectedId ? "w-[34%]" : " w-full"}`}>
+        <div className={`flex  ${selectedId ? " sm:w-[34%]" : " w-full"}`}>
             <div className=" overflow-y-scroll  w-full scrollbar-hide">
                 {data?.map((card) => {
                     return (
