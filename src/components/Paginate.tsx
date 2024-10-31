@@ -11,8 +11,8 @@ export const Paginate = ({
     total,
 }: Props) => {
     return (
-        <div className="w-full">
-            <div className="flex  mx-auto  gap-4 ">
+        <div className="w-full h-full  flex flex-col justify-center ">
+            <div className="flex    gap-4 ">
                 <button
                     className="bg-[#e54065]   text-white px-4 py-1 rounded-full "
                     onClick={handlePrevious}

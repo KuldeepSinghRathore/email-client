@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { EmailCardItemProps } from "../EmailCard/types/types";
 import axios from "axios";
 import { formatTimeStamp } from "../../helper/utils";
@@ -23,6 +23,7 @@ export const EmailBody = ({ card, onFavToggle, isFavorite }: Props) => {
     const { data, error, isLoading, isError } = useQuery({
         queryKey: ["list", card.id],
         queryFn: () => fetchRecipeBody(card.id),
+        placeholderData: keepPreviousData,
     });
     if (isLoading) {
         return (
@@ -34,7 +35,7 @@ export const EmailBody = ({ card, onFavToggle, isFavorite }: Props) => {
     if (isError) return <div>Error While Fetching Emails {error?.message}</div>;
     return (
         <div
-            className={`flex w-[62%]  py-5 bg-white text-[#636363]  rounded-xl my-4 border-2 border-[#cfd2dc] `}
+            className={`flex w-[62%]  py-5 bg-white text-[#636363]  rounded-xl mt-4 border-2 border-[#cfd2dc] `}
         >
             <div className=" w-full ">
                 <div className="flex">
@@ -64,7 +65,8 @@ export const EmailBody = ({ card, onFavToggle, isFavorite }: Props) => {
                         </div>
                         {data && (
                             <div
-                                className="prose  mx-auto pr-10 h-[70vh] overflow-y-scroll scrollbar-hide"
+                                style={{ height: "calc(80vh - 160px)" }}
+                                className="prose  mx-auto pr-10 overflow-y-scroll scrollbar-hide"
                                 dangerouslySetInnerHTML={{ __html: data }}
                             />
                         )}

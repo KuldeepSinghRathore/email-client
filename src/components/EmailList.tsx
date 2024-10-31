@@ -22,9 +22,8 @@ export const EmailList = ({
     setSelectedCard,
     selectedId,
 }: EmailCardProps) => {
-
     return (
-        <div className={`flex h-[86vh] ${selectedId ? "w-[34%]" : " w-full"}`}>
+        <div className={`flex  ${selectedId ? "w-[34%]" : " w-full"}`}>
             <div className=" overflow-y-scroll  w-full scrollbar-hide">
                 {data?.map((card) => {
                     return (

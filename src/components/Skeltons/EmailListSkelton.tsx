@@ -1,7 +1,7 @@
 const EmailListSkelton = () => {
     return (
-        <div className={`flex w-full h-[86vh]`}>
-            <div className=" overflow-y-scroll  w-full scrollbar-hide">
+        <div className={`flex w-full`}>
+            <div className=" overflow-y-scroll h-full  w-full scrollbar-hide">
                 {[1, 2, 3, 4, 5]?.map((card) => {
                     return (
                         <div
