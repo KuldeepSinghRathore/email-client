@@ -70,7 +70,9 @@ function App() {
                 className="w-[92%] mx-auto     max-w-screen-xl flex"
             >
                 {finalData && finalData?.length > 0 ? (
-                    <div className={`flex   w-full  justify-between`}>
+                    <div
+                        className={`flex overflow-y-scroll scrollbar-hide w-full  justify-between`}
+                    >
                         <EmailList
                             data={finalData}
                             localData={localData}
@@ -101,7 +103,7 @@ function App() {
                     </div>
                 )}
             </main>
-            <footer className="absolute bottom-0 left-0 right-0 max-w-screen-xl flex   mx-auto   h-20 ">
+            <footer className="absolute bottom-0 left-0 right-0 max-w-screen-xl flex w-[92%]  mx-auto   h-20 ">
                 <Paginate
                     handleNext={handleNext}
                     handlePrevious={handlePrevious}
