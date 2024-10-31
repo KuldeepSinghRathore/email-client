@@ -35,7 +35,6 @@ export const useEmailList = () => {
     const finalData = useMemo(() => {
         const list: EmailCardItemProps[] = data?.list ?? [];
         return list.map((item) => {
-            console.log("processed inside findal");
             const id = item.id;
             return {
                 ...item,

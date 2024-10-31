@@ -12,32 +12,42 @@ type EmailCardProps = {
     setSelectedCard: React.Dispatch<
         React.SetStateAction<EmailCardItemProps | null>
     >;
+    selectedId?: string;
 };
 export const EmailList = ({
     data,
- 
-    localData,setLocalData,setSelectedCard
-}:
-EmailCardProps) => {
+
+    localData,
+    setLocalData,
+    setSelectedCard,
+    selectedId,
+}: EmailCardProps) => {
+
     return (
-        <div className=" overflow-y-scroll h-[92vh] w-full ">
-            {data?.map((card) => {
-                return (
-                    <EmailCard
-                        key={card.id}
-                        card={card}
-                        onClick={() => handleCardClick(card,localData,setLocalData,setSelectedCard)}
-                        isRead={localData?.readIds?.includes(card.id)}
-                        isFavorite={localData?.favoriteIds?.includes(card.id)}
-                        // isSelected={card.id === selectedCard?.id}
-                        // isFavorite={
-                        //     (card.id === selectedCard?.id &&
-                        //         selectedCard?.isFavorite) ||
-                        //     false
-                        // }
-                    />
-                );
-            })}
+        <div className={`flex h-[86vh] ${selectedId ? "w-[34%]" : " w-full"}`}>
+            <div className=" overflow-y-scroll  w-full scrollbar-hide">
+                {data?.map((card) => {
+                    return (
+                        <EmailCard
+                            key={card.id}
+                            card={card}
+                            onClick={() =>
+                                handleCardClick(
+                                    card,
+                                    localData,
+                                    setLocalData,
+                                    setSelectedCard
+                                )
+                            }
+                            isRead={localData?.readIds?.includes(card.id)}
+                            isFavorite={localData?.favoriteIds?.includes(
+                                card.id
+                            )}
+                            isSelected={selectedId ? true : false}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 };

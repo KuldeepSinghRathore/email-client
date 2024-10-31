@@ -3,13 +3,11 @@ import { LocalDataProps } from "../hooks/useEmailList";
 import { EmailCardItemProps } from "../components/EmailCard/types/types";
 
 export const getLocalStorage = (key: string) => {
-    console.log("Reading Local Data");
 
     const item = localStorage.getItem(key);
     try {
         return item ? JSON.parse(item) : [];
     } catch {
-        console.log(`Error parsing ${key} from localStorage`);
         return [];
     }
 };
@@ -49,4 +47,25 @@ export function handleCardClick(card: EmailCardItemProps, localData: LocalDataPr
         const newCard: EmailCardItemProps = { ...card, isRead: true };
         setSelectedCard(newCard);
     }
+}
+
+
+export function formatTimeStamp(timestamp: number) {
+    if (!timestamp || isNaN(new Date(timestamp).getTime())) {
+        return ""
+    }
+    const date = new Date(timestamp)
+
+    const day = date.getDate().toString().padStart(2, "0")
+    const month = (date.getMonth() + 1).toString().padStart(2, "0")
+    const year = date.getFullYear().toString()
+
+    let hours = date.getHours()
+    const minutes = date.getMinutes().toString().padStart(2, "0")
+    const ampm = hours >= 12 ? 'pm' : 'am'
+
+    hours = hours % 12
+    hours = hours ? hours : 12     //now '0' to '12'
+    return `${day}/${month}/${year} ${hours}:${minutes}${ampm}`
+
 }
