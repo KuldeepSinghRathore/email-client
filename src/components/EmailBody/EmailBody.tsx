@@ -3,6 +3,7 @@ import { EmailCardItemProps } from "../EmailCard/types/types";
 import axios from "axios";
 import { formatTimeStamp } from "../../helper/utils";
 import Avatar from "../Avatar";
+import EmailBodySkelton from "../Skeltons/EmailBodySkelton";
 
 type Props = {
     card: EmailCardItemProps;
@@ -23,7 +24,13 @@ export const EmailBody = ({ card, onFavToggle, isFavorite }: Props) => {
         queryKey: ["list", card.id],
         queryFn: () => fetchRecipeBody(card.id),
     });
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) {
+        return (
+            <>
+                <EmailBodySkelton />
+            </>
+        );
+    }
     if (isError) return <div>Error While Fetching Emails {error?.message}</div>;
     return (
         <div
@@ -31,15 +38,10 @@ export const EmailBody = ({ card, onFavToggle, isFavorite }: Props) => {
         >
             <div className=" w-full ">
                 <div className="flex">
-                    {/* <div
-                            className={`aspect-square bg-[#e54065] text-white  rounded-full w-1/2  flex capitalize items-center justify-center font-bold  `}
-                        >
-                            {card.from.name[0]}
-                        </div> */}
-                     <Avatar
-                    text={card.from.name[0]}
-                    twStyle={`${ "min-w-[20%] pt-1"}`}
-                />
+                    <Avatar
+                        text={card.from.name[0]}
+                        twStyle={`${"min-w-[20%] pt-1"}`}
+                    />
 
                     <div className=" ">
                         <div className="flex justify-between items-center mb-4">

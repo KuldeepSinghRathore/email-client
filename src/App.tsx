@@ -6,6 +6,7 @@ import { EmailCardItemProps } from "./components/EmailCard/types/types";
 import { EmailBody } from "./components/EmailBody/EmailBody";
 import { handleFavoriteToggle } from "./helper/utils";
 import { FilterBy } from "./components/FilterBy";
+import AppSkelton from "./components/Skeltons/AppSkelton";
 
 export type FilterType = "unread" | "read" | "favorite";
 function App() {
@@ -30,7 +31,6 @@ function App() {
             filterType: FilterType,
             data: EmailCardItemProps[]
         ) => {
-
             switch (filterType) {
                 case "read":
                     return data.filter((item) =>
@@ -40,13 +40,11 @@ function App() {
                     return data.filter((item) =>
                         localData.favoriteIds.includes(item.id)
                     );
-                   
                 }
                 case "unread":
                     return data.filter(
                         (item) => !localData.readIds.includes(item.id)
                     );
-                // case "all":
                 default:
                     return data;
             }
@@ -54,19 +52,20 @@ function App() {
 
         return getFilteredData(filter, data);
     }, [data, filter, localData.favoriteIds, localData.readIds]);
-
-    if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div>Error While Fetching Emails {error?.message}</div>;
     const handleFilter = (selected: FilterType) => {
         setFilter(selected);
     };
+    if (isLoading) {
+        return <AppSkelton />;
+    }
+    if (isError) return <div>Error While Fetching Emails {error?.message}</div>;
 
     return (
-        <div className=" min-h-screen  z-0 flex flex-col bg-[#f4f5f9] w-screen ">
-            <header className="w-[92%]    mx-auto flex-[.2] py-4 max-w-screen-xl flex flex-col justify-center ">
+        <div className=" min-h-screen relative  z-0 flex flex-col bg-[#f4f5f9] w-screen ">
+            <header className="w-[92%]    mx-auto h-20 py-4 max-w-screen-xl flex flex-col justify-center ">
                 <FilterBy filter={filter} handleFilter={handleFilter} />
             </header>
-            <main className="w-[92%] mx-auto  flex-[.6]   max-w-screen-xl flex">
+            <main className="w-[92%] mx-auto  flex-1   max-w-screen-xl flex">
                 {finalData && finalData?.length > 0 ? (
                     <div className={`flex   w-full  justify-between`}>
                         <EmailList
@@ -94,12 +93,12 @@ function App() {
                         )}
                     </div>
                 ) : (
-                    <div className=" w-[92%] mx-auto min-h-[70vh] justify-center items-center flex-1   max-w-screen-xl flex flex-col">
-                        No Data Found For Filter {filter}
+                    <div className=" w-[92%] mx-auto  justify-center items-center flex-1   max-w-screen-xl text-2xl text-[#636363] flex flex-col capitalize">
+                        No Data Found For {filter}
                     </div>
                 )}
             </main>
-            <footer className="pb  mx-auto  h-[0.2]  ">
+            <footer className="pb  mx-auto   h-20 ">
                 <Paginate
                     handleNext={handleNext}
                     handlePrevious={handlePrevious}

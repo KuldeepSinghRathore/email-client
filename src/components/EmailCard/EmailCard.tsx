@@ -14,9 +14,7 @@ export const EmailCard = ({
     isFavorite,
     isRead,
     isSelected,
-}: // isSelected,
-// isFavorite,
-EmailCardProps) => {
+}: EmailCardProps) => {
     return (
         <div
             className={`
@@ -27,11 +25,6 @@ EmailCardProps) => {
             onClick={onClick}
         >
             <div className={`flex  py-3 ${isSelected && "py-2.5"}`}>
-                {/* <div
-                    className={`flex-[0.1] flex ${
-                        isSelected && "min-w-[20%]"
-                    } items-start justify-center  pt-1`}
-                ></div> */}
                 <Avatar
                     text={card.from.name[0]}
                     twStyle={`${
