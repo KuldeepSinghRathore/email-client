@@ -41,21 +41,21 @@ export const EmailBody = ({ card, onFavToggle, isFavorite }: Props) => {
                 <div className="flex">
                     <Avatar
                         text={card.from.name[0]}
-                        twStyle={`${"min-w-[20%] pt-1"}`}
+                        twStyle={`${"ml-5 pt-1"}`}
                     />
 
-                    <div className=" ">
+                    <div className="ml-5 ">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-2xl font-bold flex-1 ">
                                 {card.subject}
                             </h2>
                             <button
                                 onClick={onFavToggle}
-                                className="bg-[#e54065] flex-1 max-w-fit mr-10  text-white px-4 py-1 rounded-full "
+                                className="bg-[#e54065]  flex-1 max-w-fit mr-10  text-white px-4 py-1 rounded-full flex"
                             >
                                 {isFavorite
-                                    ? "Remove Favorite"
-                                    : "Mark Favorite"}
+                                    ? "Remove favorite"
+                                    : "Mark as favorite"}
                             </button>
                         </div>
                         <div className="mb-4">
