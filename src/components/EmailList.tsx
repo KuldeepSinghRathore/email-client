@@ -42,7 +42,8 @@ export const EmailList = ({
                             isFavorite={localData?.favoriteIds?.includes(
                                 card.id
                             )}
-                            isSelected={selectedId ? true : false}
+                            isSelected={card?.id === selectedId}
+                            isClicked={selectedId ? true : false}
                         />
                     );
                 })}

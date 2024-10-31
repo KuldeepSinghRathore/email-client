@@ -8,7 +8,7 @@ const labelArr: FilterType[] = ["unread", "read", "favorite"];
 export const FilterBy = ({ filter, handleFilter }: Props) => {
     return (
         <div className="flex gap-4 ">
-            <ul className="flex gap-5 text-[#636363] font-normal whitespace-nowrap  items-center">
+            <ul className="flex gap-5 text-[#010000] font-medium whitespace-nowrap  items-center">
                 <span>Filter By:</span>
                 {labelArr.map((label) => {
                     return (
